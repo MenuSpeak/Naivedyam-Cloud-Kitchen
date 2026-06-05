@@ -1173,78 +1173,240 @@
         </div>
 
 <!-- Suggestion Button -->
-<button onclick="openSuggestionForm()" 
-style="background:#d4af37;color:#000;padding:12px 25px;border:none;border-radius:8px;font-size:16px;font-weight:bold;cursor:pointer;margin:15px auto;display:block;">
-💡 Give Suggestion
+<button onclick="openSuggestionForm()"
+style="
+background:linear-gradient(135deg,#d4af37,#f5d76e);
+color:#000;
+padding:12px 28px;
+border:none;
+border-radius:30px;
+font-size:16px;
+font-weight:700;
+cursor:pointer;
+display:block;
+margin:20px auto;
+box-shadow:0 4px 15px rgba(212,175,55,0.4);
+transition:0.3s;
+">
+💡 Suggestion & Feedback
 </button>
 
-<!-- Suggestion Form Modal -->
-<div id="suggestionModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);z-index:9999;justify-content:center;align-items:center;">
+<!-- Popup -->
+<div id="suggestionModal"
+style="
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.85);
+z-index:99999;
+justify-content:center;
+align-items:center;
+backdrop-filter:blur(4px);
+">
 
-    <div style="background:#fff;padding:20px;border-radius:12px;width:90%;max-width:400px;">
-        
-        <h3 style="text-align:center;margin-bottom:15px;color:#000;">
-            Share Your Suggestion
-        </h3>
+<div id="suggestionBox"
+style="
+background:#111;
+width:90%;
+max-width:450px;
+padding:25px;
+border-radius:20px;
+border:2px solid #d4af37;
+box-shadow:0 0 30px rgba(212,175,55,0.35);
+animation:popupAnimation 0.35s ease;
+">
 
-        <input type="text" id="customerName"
-        placeholder="Your Name"
-        style="width:100%;padding:10px;margin-bottom:10px;border:1px solid #ccc;border-radius:6px;box-sizing:border-box;">
+<h2 style="
+text-align:center;
+color:#d4af37;
+margin-bottom:20px;
+font-family:serif;
+">
+💡 Suggestion Form
+</h2>
 
-        <textarea id="customerSuggestion"
-        placeholder="Write your suggestion..."
-        rows="4"
-        style="width:100%;padding:10px;border:1px solid #ccc;border-radius:6px;box-sizing:border-box;"></textarea>
+<input type="text" id="customerName"
+placeholder="Your Name"
+style="
+width:100%;
+padding:12px;
+margin-bottom:12px;
+border:1px solid #d4af37;
+border-radius:10px;
+background:#1a1a1a;
+color:white;
+box-sizing:border-box;
+">
 
-        <div style="display:flex;gap:10px;margin-top:15px;">
-            
-            <button onclick="sendSuggestion()"
-            style="flex:1;background:#25D366;color:#fff;padding:10px;border:none;border-radius:6px;font-weight:bold;cursor:pointer;">
-            Submit
-            </button>
+<input type="tel" id="customerMobile"
+placeholder="Mobile Number"
+style="
+width:100%;
+padding:12px;
+margin-bottom:12px;
+border:1px solid #d4af37;
+border-radius:10px;
+background:#1a1a1a;
+color:white;
+box-sizing:border-box;
+">
 
-            <button onclick="closeSuggestionForm()"
-            style="flex:1;background:#dc3545;color:#fff;padding:10px;border:none;border-radius:6px;font-weight:bold;cursor:pointer;">
-            Close
-            </button>
+<input type="text" id="customerAddress"
+placeholder="Address"
+style="
+width:100%;
+padding:12px;
+margin-bottom:12px;
+border:1px solid #d4af37;
+border-radius:10px;
+background:#1a1a1a;
+color:white;
+box-sizing:border-box;
+">
 
-        </div>
-    </div>
+<label style="color:#d4af37;font-size:14px;">
+🎂 Date of Birth
+</label>
+
+<input type="date" id="customerDOB"
+style="
+width:100%;
+padding:12px;
+margin-top:5px;
+margin-bottom:12px;
+border:1px solid #d4af37;
+border-radius:10px;
+background:#1a1a1a;
+color:white;
+box-sizing:border-box;
+">
+
+<label style="color:#d4af37;font-size:14px;">
+💍 Anniversary Date
+</label>
+
+<input type="date" id="customerAnniversary"
+style="
+width:100%;
+padding:12px;
+margin-top:5px;
+margin-bottom:12px;
+border:1px solid #d4af37;
+border-radius:10px;
+background:#1a1a1a;
+color:white;
+box-sizing:border-box;
+">
+
+<textarea id="customerSuggestion"
+placeholder="Write your suggestion..."
+rows="4"
+style="
+width:100%;
+padding:12px;
+margin-bottom:15px;
+border:1px solid #d4af37;
+border-radius:10px;
+background:#1a1a1a;
+color:white;
+box-sizing:border-box;
+"></textarea>
+
+<div style="display:flex;gap:10px;">
+
+<button onclick="sendSuggestion()"
+style="
+flex:1;
+background:#25D366;
+color:white;
+padding:12px;
+border:none;
+border-radius:10px;
+font-weight:bold;
+cursor:pointer;
+">
+Submit
+</button>
+
+<button onclick="closeSuggestionForm()"
+style="
+flex:1;
+background:#dc3545;
+color:white;
+padding:12px;
+border:none;
+border-radius:10px;
+font-weight:bold;
+cursor:pointer;
+">
+Close
+</button>
+
+</div>
+</div>
 </div>
 
+<style>
+@keyframes popupAnimation{
+from{
+opacity:0;
+transform:scale(0.8);
+}
+to{
+opacity:1;
+transform:scale(1);
+}
+}
+</style>
+
 <script>
-function openSuggestionForm() {
-    document.getElementById("suggestionModal").style.display = "flex";
+function openSuggestionForm(){
+document.getElementById("suggestionModal").style.display="flex";
 }
 
-function closeSuggestionForm() {
-    document.getElementById("suggestionModal").style.display = "none";
+function closeSuggestionForm(){
+document.getElementById("suggestionModal").style.display="none";
 }
 
-function sendSuggestion() {
+function sendSuggestion(){
 
-    const name = document.getElementById("customerName").value.trim();
-    const suggestion = document.getElementById("customerSuggestion").value.trim();
+const name=document.getElementById("customerName").value.trim();
+const mobile=document.getElementById("customerMobile").value.trim();
+const address=document.getElementById("customerAddress").value.trim();
+const dob=document.getElementById("customerDOB").value;
+const anniversary=document.getElementById("customerAnniversary").value;
+const suggestion=document.getElementById("customerSuggestion").value.trim();
 
-    if (!name || !suggestion) {
-        alert("Please fill all fields.");
-        return;
-    }
+if(!name || !mobile){
+alert("Please enter Name and Mobile Number");
+return;
+}
 
-    const message =
-`💡 New Customer Suggestion
+const message =
+`💡 New Customer Feedback
 
 👤 Name: ${name}
 
+📱 Mobile: ${mobile}
+
+📍 Address: ${address || "Not Provided"}
+
+🎂 Date of Birth: ${dob || "Not Provided"}
+
+💍 Anniversary Date: ${anniversary || "Not Provided"}
+
 📝 Suggestion:
-${suggestion}
+${suggestion || "No Suggestion"}
 
 🌐 Sent from Naivedyam Cloud Kitchen Website`;
 
-    const whatsappURL =
+const whatsappURL =
 `https://wa.me/919649791949?text=${encodeURIComponent(message)}`;
 
-    window.open(whatsappURL, "_blank");
+window.open(whatsappURL,"_blank");
 }
 </script>
           
